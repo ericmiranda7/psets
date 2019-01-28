@@ -5,8 +5,15 @@ int main(void)
 {
     float money;
     int doll, cents, count;
+
+    for (;;) {
     printf("How much change is owed ?: ");
     scanf("%f", &money);
+    if (money > 0) {
+        break;
+    }
+    }
+
     doll = (int)money;
     cents = round((money - doll)*100);
 
