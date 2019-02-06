@@ -23,32 +23,30 @@ int main(int argc, char *argv[])
         return 1;
     }
     // Initialise arrays
-    int key = atoi(argv[1]);
-    int pbin[100];
+    int key = atoi(argv[1]), pbin[100];
     char ptext[100];
     printf("Enter plaintext: ");
     gets(ptext);
     printf("Ciphertext: ");
 
-    // Add key to plaintext
+    // Loop for adding key to plaintext
     for (int i = 0; i < strlen(ptext); i++)
     {
-        for (int j = 0; j < strlen(ptext); j++)
+        // Check if upper case
+        if (ptext[i] >= 'A' && ptext[i] <= 'Z')
         {
-            if (ptext[j] >= 'A' && ptext[j] <= 'Z')
-            {
-                pbin[j] = ((int) ptext[j] + key - 'A') % 26 + 'A';
-            }
-            else if (ptext[j] >= 'a' && ptext[j] <= 'z')
-            {
-                pbin[j] = ((int) ptext[j] + key - 'a') % 26 + 'a';
-            }
-            // Store non alphabets as same
-            else
-            {
-                pbin[j] = (int) ptext[i];
-            }    
+            pbin[i] = ((int) ptext[i] + key - 'A') % 26 + 'A';
         }
+        // Check if lower case
+        else if (ptext[i] >= 'a' && ptext[i] <= 'z')
+        {
+            pbin[i] = ((int) ptext[i] + key - 'a') % 26 + 'a';
+        }
+        // Store non alphabets as same
+        else
+        {
+            pbin[i] = (int) ptext[i];
+        }    
         // Print ciphertext
         printf("%c", (char)pbin[i]);
     }
